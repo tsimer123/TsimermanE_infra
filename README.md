@@ -31,5 +31,8 @@ TsimermanE_infra Tsimerman Infra repository
 
 3. Данные для подлючения:
 
+## Как проверить работоспособность:
+ - https://35.242.253.247.sslip.io/
+
 bastion_IP = 35.242.253.24
 someinternalhost_IP = 10.156.0.3
