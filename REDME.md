@@ -29,3 +29,7 @@ TsimermanE_infra Tsimerman Infra repository
 	  в файле ~/.ssh/config в записи для someinternal необходимо добавить:
 	  ProxyCommand ssh bastion -W %h:%p 
 
+3. Данные для подлючения:
+
+bastion_IP = 35.242.253.247
+someinternalhost_IP = 10.156.0.3
