@@ -2,7 +2,7 @@ TsimermanE_infra Tsimerman Infra repository
 
 Ответ на задание в ДЗ 5 урок "Знакомство с облачнои инфраструктурои"
 
-0. Для упращения подлючения к серверам по ssh можно использовать алиасы, для данного залания подсходит
+0. Для упращения подлючения к серверам по ssh можно использовать алиасы, для данного задания подходит
    следующий конфиг:
 
    файл ~/.ssh/config
@@ -22,10 +22,10 @@ TsimermanE_infra Tsimerman Infra repository
 1. Для подлючения к хосту (someinternalhost) через промежуточный (bastion) можно исполтьзовать 
    bastion как:
 	
-	- Как джамп хост
+	- джамп хост
 	  команда: ssh -J bastion someinternalhost
 	
-	-* Использовать команду ProxyCommand (прокси):
+	-* использовать команду ProxyCommand (прокси):
 	  в файле ~/.ssh/config в записи для someinternal необходимо добавить:
 	  ProxyCommand ssh bastion -W %h:%p 
 
