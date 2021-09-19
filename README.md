@@ -85,3 +85,10 @@ ____________
 sudo journalctl -u google-startup-scripts.service
 ____________
   
+  1.6. Копирование в бакет файлов через утилиту gcloud/
+____________
+
+gsutil cp run.sh gs://my-run/
+____________
+
+
