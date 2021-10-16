@@ -101,6 +101,8 @@ ____________
 
 packer build -var-file=variables.json template.json
 
+packer build -var-file=varibles.json immutable.json
+
 или
 
 packer validate -var-file=variables.json ubuntu16.json
