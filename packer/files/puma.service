@@ -1,11 +1,11 @@
 [Unit]
 Description=puma
-After=network.target
+After=multi-user.target
 
 [Service]
-Type=simple
-ExecStart=/home/reddit/puma -d
-Restart=always
+Type=forking
+ExecStart=/home/appuser/start-puma.sh
 
 [Install]
 WantedBy=multi-user.target
+
