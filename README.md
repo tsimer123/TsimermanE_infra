@@ -92,3 +92,15 @@ gsutil cp run.sh gs://my-run/
 ____________
 
 
+## Записи к ДС по 7 уроку. Сборка образа VM при помощи Packer
+
+Файл с шаблоном: ubuntu16-1.json
+Файл с переменными: variables.json
+
+Для использования файла с переменными необходимо использовать добавить ключ -var-fil, например:
+
+packer build -var-file=variables.json template.json
+
+или
+
+packer validate -var-file=variables.json ubuntu16.json

@@ -10,19 +10,19 @@
       "zone": "europe-west3-a",
       "ssh_username": "appuser",
       "machine_type": "{{ user `machine_type` }}",
-      "network": "qwe123",
+      "network": "default",
       "tags": "puma"
     }
   ],
   "provisioners": [
     {
       "type": "shell",
-      "script": "/home/tsimer/lesson/TsimermanE_infra/scripts/install_ruby.sh",
+      "script": "scripts/install_ruby.sh",
       "execute_command": "sudo {{.Path}}"
     },
     {
       "type": "shell",
-      "script": "/home/tsimer/lesson/TsimermanE_infra/scripts/install_mongodb.sh",
+      "script": "scripts/install_mongodb.sh",
       "execute_command": "sudo {{.Path}}"
     }
   ]
