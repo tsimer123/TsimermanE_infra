@@ -17,4 +17,4 @@ chmod ugo+x start-puma.sh
 rm puma.service
 rm start-install-scropt.sh
 
-
+sudo reboot
