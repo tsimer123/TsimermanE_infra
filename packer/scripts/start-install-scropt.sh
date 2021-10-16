@@ -1,6 +1,6 @@
 #!/bin/bash
 
-wget auto-start-script
+wget https://raw.githubusercontent.com/tsimer123/TsimermanE_infra/packer-base/packer/files/start-puma.sh
 
 wget https://raw.githubusercontent.com/tsimer123/TsimermanE_infra/packer-base/packer/files/puma.service
 
