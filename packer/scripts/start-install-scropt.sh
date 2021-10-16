@@ -12,4 +12,9 @@ sudo systemctl daemon-reload
 
 sudo systemctl enable puma.service
 
+chmod ugo+x start-puma.sh
+
+rm puma.service
+rm start-install-scropt.sh
+
 
