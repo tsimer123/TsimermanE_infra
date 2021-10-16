@@ -104,3 +104,12 @@ packer build -var-file=variables.json template.json
 или
 
 packer validate -var-file=variables.json ubuntu16.json
+
+Команда для создания ВМ из своего образа:
+
+gcloud compute instances create reddit-app \
+  --boot-disk-size=10GB \
+  --image=reddit-base-1634396083 \
+  --machine-type=f1-micro \
+  --tags puma-server
+
