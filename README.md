@@ -106,18 +106,20 @@ ____________
 # Записи к ДЗ по 7 уроку. "Сборка образа VM при помощи Packer"
 
 1. Команды GCP.
+
+---	
 	1.1. Создание Application Default Credentials (ADC) - использование API GCP сторонним ПО:
 
 ```
 gcloud auth application-default login
 ```
-
+---
 	1.2. Команда для просмотра проектов GCP:
 
 ```
 gcloud projects list
 ```
-
+---
 	1.3. Команда для создания ВМ из своего образа:
 
 ```
@@ -127,19 +129,20 @@ gcloud compute instances create reddit-app \
   --machine-type=f1-micro \
   --tags puma-server
 ```
-
+---
 2. Packer.
+---
 	2.1. Файлы
 
 Файл с шаблоном: ubuntu16.json и immutable.json
 Файл с переменными: variables.json
-
+---
 	2.2. Описание файлов
 
 * builders - секция отвечает за создание виртуальной машины для билда и создание машинного образа в GCP
 * provisioners - секция позволяет устанавливать нужное ПО, производить настройки системы и конфигурацию приложений на созданной VM 
 * variables - обявление переменных в файле шаблона или в отдельном файле (для сохранение секретов - хранить в отдельном файле и добавлять его в gitignore)
-
+---
 	2.3. Команды
 
 * Для использования файла с переменными необходимо использовать добавить ключ -var-fil, например:
@@ -159,3 +162,4 @@ packer validate -var-file=variables.json ubuntu16.json
 ```
 packer build -var-file=varibles.json immutable.json
 ```
+---
