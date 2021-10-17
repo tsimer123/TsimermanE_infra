@@ -46,8 +46,9 @@ testapp_port = 9292
 
 0. Знакомство с утилитой gcloud.
 1. Знакомство с командой создания ВМ.
+---
 	1.1. Знакомство с возможностью добавления startapscript.
-____________
+
 
 ```
 gcloud compute instances create reddit-app \
@@ -60,11 +61,12 @@ gcloud compute instances create reddit-app \
   --scopes=storage-ro \
   --metadata=startup-script-url=gs://my-run/run.sh\
  ```
-____________
+---
 
 	1.2. Знакомство с возможностью деплоя скриптами в том числе с помощью startapscript.
+	
+---
 	1.3. Знакомство с возмоднстью добавления правил фаервола через gcloud.
-____________
 
 ```
 gcloud compute firewall-rules create default-puma-server \
@@ -76,31 +78,31 @@ gcloud compute firewall-rules create default-puma-server \
     --priority 1000 \
     --target-tags puma-server
 ```
-____________
+---
 
 	1.4. Знакомство с возмолжностью удаления ВМ командой через gcloud.
-____________
+
 
 ```
 gcloud compute instances delete reddit-app
 ```
-____________
+---
 
 	1.5. Знакомство с возмолжностью  просмтра результата выполнения startapscript.
-____________
+
 
 ```
 sudo journalctl -u google-startup-scripts.service
 ```
-____________
+---
   
 	1.6. Копирование в бакет файлов через утилиту gcloud/
-____________
+
 
 ```
 gsutil cp run.sh gs://my-run/
 ```
-____________
+---
 
 
 # Записи к ДЗ по 7 уроку. "Сборка образа VM при помощи Packer"
@@ -131,17 +133,20 @@ gcloud compute instances create reddit-app \
 ```
 ---
 2. Packer.
+
 ---
 	2.1. Файлы
 
 Файл с шаблоном: ubuntu16.json и immutable.json
 Файл с переменными: variables.json
+
 ---
 	2.2. Описание файлов
 
 * builders - секция отвечает за создание виртуальной машины для билда и создание машинного образа в GCP
 * provisioners - секция позволяет устанавливать нужное ПО, производить настройки системы и конфигурацию приложений на созданной VM 
 * variables - обявление переменных в файле шаблона или в отдельном файле (для сохранение секретов - хранить в отдельном файле и добавлять его в gitignore)
+
 ---
 	2.3. Команды
 
