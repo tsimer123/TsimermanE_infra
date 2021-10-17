@@ -1,6 +1,6 @@
 TsimermanE_infra Tsimerman Infra repository
 
-Ответ на задание в ДЗ 5 урок "Знакомство с облачнои инфраструктурои"
+# Записи к ДЗ по 5 уроку."Знакомство с облачнои инфраструктурои"
 
 0. Для упращения подлючения к серверам по ssh можно использовать алиасы, для данного задания подходит
    следующий конфиг:
@@ -31,14 +31,14 @@ TsimermanE_infra Tsimerman Infra repository
 
 3. Данные для подлючения:
 
-## Как проверить работоспособность:
+### Как проверить работоспособность:
  - https://35.242.253.247.sslip.io/
 
 bastion_IP = 35.242.253.247.sslip.io
 someinternalhost_IP = 10.156.0.3
 
 
-## Ответ на задание в ДС 6 урок Основные сервисы Google Cloud Platform
+# Записи к ДЗ по 6 уроку. "Основные сервисы Google Cloud Platform"
 
 testapp_IP = 34.141.73.242
 testapp_port = 9292
@@ -48,6 +48,7 @@ testapp_port = 9292
   1.1. Знакомство с возможностью добавления startapscript.
 ____________
 
+```
 gcloud compute instances create reddit-app \
   --boot-disk-size=10GB \
   --image-family ubuntu-1604-lts \
@@ -56,13 +57,15 @@ gcloud compute instances create reddit-app \
   --tags puma-server \
   --restart-on-failure \
   --scopes=storage-ro \
-  --metadata=startup-script-url=gs://my-run/run.sh
+  --metadata=startup-script-url=gs://my-run/run.sh\
+ ```
 ____________
 
   1.2. Знакомство с возможностью деплоя скриптами в том числе с помощью startapscript.
   1.3. Знакомство с возмоднстью добавления правил фаервола через gcloud.
 ____________
 
+```
 gcloud compute firewall-rules create default-puma-server \
     --network default \
     --action allow \
@@ -71,47 +74,87 @@ gcloud compute firewall-rules create default-puma-server \
     --source-ranges 0.0.0.0/0 \
     --priority 1000 \
     --target-tags puma-server
+```
 ____________
 
   1.4. Знакомство с возмолжностью удаления ВМ командой через gcloud.
 ____________
 
+```
 gcloud compute instances delete reddit-app
+```
 ____________
 
   1.5. Знакомство с возмолжностью  просмтра результата выполнения startapscript.
 ____________
 
+```
 sudo journalctl -u google-startup-scripts.service
+```
 ____________
   
   1.6. Копирование в бакет файлов через утилиту gcloud/
 ____________
 
+```
 gsutil cp run.sh gs://my-run/
+```
 ____________
 
 
-## Записи к ДС по 7 уроку. Сборка образа VM при помощи Packer
+# Записи к ДЗ по 7 уроку. "Сборка образа VM при помощи Packer"
 
-Файл с шаблоном: ubuntu16-1.json
-Файл с переменными: variables.json
+1. Команды GCP.
+1.1 Создание Application Default Credentials (ADC) - использование API GCP сторонним ПО:
 
-Для использования файла с переменными необходимо использовать добавить ключ -var-fil, например:
+```
+gcloud auth application-default login
+```
 
-packer build -var-file=variables.json template.json
+1.2 Команда для просмотра проектов GCP:
 
-packer build -var-file=varibles.json immutable.json
+```
+gcloud projects list
+```
 
-или
+1.3 Команда для создания ВМ из своего образа:
 
-packer validate -var-file=variables.json ubuntu16.json
-
-Команда для создания ВМ из своего образа:
-
+```
 gcloud compute instances create reddit-app \
   --boot-disk-size=10GB \
   --image=reddit-base-1634396083 \
   --machine-type=f1-micro \
   --tags puma-server
+```
 
+2. Packer.
+2.1. Файлы
+
+Файл с шаблоном: ubuntu16.json и immutable.json
+Файл с переменными: variables.json
+
+2.2 Описание файлов
+
+*builders - секция отвечает за создание виртуальной машины для билда и создание машинного образа в GCP
+*provisioners - секция позволяет устанавливать нужное ПО, производить настройки системы и конфигурацию приложений на созданной VM 
+*variables - обявление переменных в файле шаблона или в отдельном файле (для сохранение секретов - хранить в отдельном файле и добавлять его в gitignore)
+
+2.3 Команды
+
+*Для использования файла с переменными необходимо использовать добавить ключ -var-fil, например:
+
+```
+packer build -var-file=variables.json template.json
+```
+
+* Проверка (валидация) шаблона
+
+```
+packer validate -var-file=variables.json ubuntu16.json
+```
+
+*Сборка образа VM
+
+```
+packer build -var-file=varibles.json immutable.json
+```
